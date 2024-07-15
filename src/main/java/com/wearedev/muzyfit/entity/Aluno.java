@@ -25,7 +25,6 @@ public class Aluno {
     @Column(nullable = false)
     private String nome;
 
-    @CPF
     @Column(nullable = false, unique = true)
     private String cpf;
 
