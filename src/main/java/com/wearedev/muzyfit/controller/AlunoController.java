@@ -60,7 +60,6 @@ public record AlunoController(AlunoServiceImpl alunoService) {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AlunoDto alunoDto){
         try {
-
             var updatedAluno = alunoService.update(id, alunoDto.toModel()); // Pode ser um método de update, ajuste conforme necessário
             return ResponseEntity.ok(new AlunoDto(updatedAluno));
         } catch (NotFoundException ex) {

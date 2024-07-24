@@ -1,7 +1,6 @@
 package com.wearedev.muzyfit.controller.dto;
 
 import com.wearedev.muzyfit.entity.Aluno;
-import com.wearedev.muzyfit.entity.AvaliacaoFisica;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +18,8 @@ public record AlunoDto (
         String numeroCasa,
         String bairro,
         LocalDate dataNascimento,
-        List<AvaliacaoDto> avaliacoes) {
+        List<AvaliacaoDto> avaliacoes,
+        MatriculaDto matricula) {
 
     public AlunoDto(Aluno model){
         this(
@@ -30,7 +30,8 @@ public record AlunoDto (
                 model.getNumeroCasa(),
                 model.getBairro(),
                 model.getDataNascimento(),
-                ofNullable(model.getAvaliacoes()).orElse(emptyList()).stream().map(AvaliacaoDto::new).collect(Collectors.toList())
+                ofNullable(model.getAvaliacoes()).orElse(emptyList()).stream().map(AvaliacaoDto::new).collect(Collectors.toList()),
+                ofNullable(model.getMatricula()).map(MatriculaDto::new).orElse(null)
         );
 
     }
@@ -45,6 +46,7 @@ public record AlunoDto (
         model.setBairro(this.bairro);
         model.setDataNascimento(this.dataNascimento);
         model.setAvaliacoes(ofNullable(this.avaliacoes).orElse(emptyList()).stream().map(AvaliacaoDto::toModel).collect(toList()));
+        model.setMatricula(ofNullable(this.matricula).map(MatriculaDto::toModel).orElse(null));
         return model;
     }
 }

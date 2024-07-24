@@ -20,7 +20,7 @@ public class Matricula {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "aluno_id")
+    @JoinColumn(name = "aluno_id", referencedColumnName = "id")
     private Aluno aluno;
 
     @CreatedDate

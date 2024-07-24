@@ -7,14 +7,11 @@ import java.time.LocalDateTime;
 public record MatriculaDto(
 
         Long id,
-        Long alunoId,
         LocalDateTime dataMatricula) {
 
-    public MatriculaDto(Matricula matricula) {
+    public MatriculaDto(Matricula model) {
         this(
-                matricula.getId(),
-                matricula.getAluno().getId(),
-                matricula.getDataMatricula()
+                model.getId(), model.getDataMatricula()
         );
     }
 

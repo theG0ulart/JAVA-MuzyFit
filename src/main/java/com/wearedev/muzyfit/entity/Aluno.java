@@ -37,10 +37,13 @@ public class Aluno {
     @Column(nullable = false)
     private String bairro;
 
+    @Column(nullable = false)
     private LocalDate dataNascimento;
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
 
+    @OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Matricula matricula;
 }
